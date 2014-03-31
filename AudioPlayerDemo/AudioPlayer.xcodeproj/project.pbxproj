@@ -21,7 +21,7 @@
 		2D65AB0C18E8E60E003BE7B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D65AAEE18E8E60E003BE7B8 /* UIKit.framework */; };
 		2D65AB1418E8E60E003BE7B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D65AB1218E8E60E003BE7B8 /* InfoPlist.strings */; };
 		2D65AB1618E8E60E003BE7B8 /* AudioPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D65AB1518E8E60E003BE7B8 /* AudioPlayerTests.m */; };
-		2D65AB2218E8E63E003BE7B8 /* SCLTAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D65AB2118E8E63E003BE7B8 /* SCLTAudioPlayer.m */; };
+		2D65AB2618E8E816003BE7B8 /* SCLTAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D65AB2518E8E816003BE7B8 /* SCLTAudioPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,8 @@
 		2D65AB1118E8E60E003BE7B8 /* AudioPlayerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioPlayerTests-Info.plist"; sourceTree = "<group>"; };
 		2D65AB1318E8E60E003BE7B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2D65AB1518E8E60E003BE7B8 /* AudioPlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerTests.m; sourceTree = "<group>"; };
-		2D65AB2018E8E63E003BE7B8 /* SCLTAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCLTAudioPlayer.h; path = SCLTAudioPlayer/SCLTAudioPlayer.h; sourceTree = "<group>"; };
-		2D65AB2118E8E63E003BE7B8 /* SCLTAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCLTAudioPlayer.m; path = SCLTAudioPlayer/SCLTAudioPlayer.m; sourceTree = "<group>"; };
+		2D65AB2418E8E816003BE7B8 /* SCLTAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTAudioPlayer.h; sourceTree = "<group>"; };
+		2D65AB2518E8E816003BE7B8 /* SCLTAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTAudioPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +115,7 @@
 		2D65AAF018E8E60E003BE7B8 /* AudioPlayerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				2D65AB1F18E8E61F003BE7B8 /* SCLTAudioPlayer */,
+				2D65AB2318E8E816003BE7B8 /* SCLTAudioPlayer */,
 				2D65AAF918E8E60E003BE7B8 /* SCLTAppDelegate.h */,
 				2D65AAFA18E8E60E003BE7B8 /* SCLTAppDelegate.m */,
 				2D65AAFC18E8E60E003BE7B8 /* Main.storyboard */,
@@ -157,13 +157,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2D65AB1F18E8E61F003BE7B8 /* SCLTAudioPlayer */ = {
+		2D65AB2318E8E816003BE7B8 /* SCLTAudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				2D65AB2018E8E63E003BE7B8 /* SCLTAudioPlayer.h */,
-				2D65AB2118E8E63E003BE7B8 /* SCLTAudioPlayer.m */,
+				2D65AB2418E8E816003BE7B8 /* SCLTAudioPlayer.h */,
+				2D65AB2518E8E816003BE7B8 /* SCLTAudioPlayer.m */,
 			);
 			name = SCLTAudioPlayer;
+			path = ../../SCLTAudioPlayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,7 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D65AAFB18E8E60E003BE7B8 /* SCLTAppDelegate.m in Sources */,
-				2D65AB2218E8E63E003BE7B8 /* SCLTAudioPlayer.m in Sources */,
+				2D65AB2618E8E816003BE7B8 /* SCLTAudioPlayer.m in Sources */,
 				2D65AAF718E8E60E003BE7B8 /* main.m in Sources */,
 				2D65AB0118E8E60E003BE7B8 /* SCLTViewController.m in Sources */,
 			);
@@ -472,6 +473,7 @@
 				2D65AB1B18E8E60E003BE7B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2D65AB1C18E8E60E003BE7B8 /* Build configuration list for PBXNativeTarget "AudioPlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -480,6 +482,7 @@
 				2D65AB1E18E8E60E003BE7B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
