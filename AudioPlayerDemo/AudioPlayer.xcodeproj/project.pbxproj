@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D31D8F918F06EE000AE5F7A /* SCLTMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D31D8F818F06EE000AE5F7A /* SCLTMediaItem.m */; };
+		2D31D8FD18F077CE00AE5F7A /* SCLTAudioPlayerNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D31D8FC18F077CE00AE5F7A /* SCLTAudioPlayerNotifications.m */; };
 		2D65AAEB18E8E60E003BE7B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D65AAEA18E8E60E003BE7B8 /* Foundation.framework */; };
 		2D65AAED18E8E60E003BE7B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D65AAEC18E8E60E003BE7B8 /* CoreGraphics.framework */; };
 		2D65AAEF18E8E60E003BE7B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D65AAEE18E8E60E003BE7B8 /* UIKit.framework */; };
@@ -35,6 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D31D8F718F06EE000AE5F7A /* SCLTMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTMediaItem.h; sourceTree = "<group>"; };
+		2D31D8F818F06EE000AE5F7A /* SCLTMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTMediaItem.m; sourceTree = "<group>"; };
+		2D31D8FA18F072EB00AE5F7A /* SCLTAudioPlayerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCLTAudioPlayerDelegate.h; sourceTree = "<group>"; };
+		2D31D8FB18F077CE00AE5F7A /* SCLTAudioPlayerNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTAudioPlayerNotifications.h; sourceTree = "<group>"; };
+		2D31D8FC18F077CE00AE5F7A /* SCLTAudioPlayerNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTAudioPlayerNotifications.m; sourceTree = "<group>"; };
 		2D65AAE718E8E60E003BE7B8 /* AudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D65AAEA18E8E60E003BE7B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2D65AAEC18E8E60E003BE7B8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -82,6 +89,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D31D8FE18F0785C00AE5F7A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2D31D8FB18F077CE00AE5F7A /* SCLTAudioPlayerNotifications.h */,
+				2D31D8FC18F077CE00AE5F7A /* SCLTAudioPlayerNotifications.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2D31D8FF18F0787300AE5F7A /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				2D31D8FA18F072EB00AE5F7A /* SCLTAudioPlayerDelegate.h */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		2D31D90018F0789300AE5F7A /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				2D31D8F718F06EE000AE5F7A /* SCLTMediaItem.h */,
+				2D31D8F818F06EE000AE5F7A /* SCLTMediaItem.m */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
 		2D65AADE18E8E60D003BE7B8 = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +193,9 @@
 		2D65AB2318E8E816003BE7B8 /* SCLTAudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				2D31D90018F0789300AE5F7A /* Media */,
+				2D31D8FF18F0787300AE5F7A /* Delegate */,
+				2D31D8FE18F0785C00AE5F7A /* Supporting Files */,
 				2D65AB2418E8E816003BE7B8 /* SCLTAudioPlayer.h */,
 				2D65AB2518E8E816003BE7B8 /* SCLTAudioPlayer.m */,
 			);
@@ -266,6 +302,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D65AAFB18E8E60E003BE7B8 /* SCLTAppDelegate.m in Sources */,
+				2D31D8F918F06EE000AE5F7A /* SCLTMediaItem.m in Sources */,
+				2D31D8FD18F077CE00AE5F7A /* SCLTAudioPlayerNotifications.m in Sources */,
 				2D65AB2618E8E816003BE7B8 /* SCLTAudioPlayer.m in Sources */,
 				2D65AAF718E8E60E003BE7B8 /* main.m in Sources */,
 				2D65AB0118E8E60E003BE7B8 /* SCLTViewController.m in Sources */,
