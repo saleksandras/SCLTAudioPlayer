@@ -251,6 +251,13 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Scarlet;
 				TargetAttributes = {
+					2D65AAE618E8E60E003BE7B8 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					2D65AB0718E8E60E003BE7B8 = {
 						TestTargetID = 2D65AAE618E8E60E003BE7B8;
 					};

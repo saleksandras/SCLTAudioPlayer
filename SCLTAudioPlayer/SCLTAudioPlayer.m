@@ -92,6 +92,8 @@
     if (self.isPlaying) {
         [self play];
     }
+    
+    [self updateSystemControls];
 }
 
 
