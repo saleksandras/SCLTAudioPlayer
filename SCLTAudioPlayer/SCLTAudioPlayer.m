@@ -82,6 +82,7 @@
     NSError *error;
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:item.assetURL
                                                          error:&error];
+    self.currentItem = item;
     
     if (error) {
         [self postNotification:SCLTAudioPlayerError];

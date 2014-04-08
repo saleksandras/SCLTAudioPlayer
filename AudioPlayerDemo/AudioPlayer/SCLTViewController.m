@@ -106,7 +106,7 @@
     
     NSMutableArray *playlist = [NSMutableArray arrayWithCapacity:([self.songs count] - indexPath.row)];
 
-    for (int i = indexPath.row; i < [self.songs count]; i++) {
+    for (NSInteger i = indexPath.row; i < [self.songs count]; i++) {
     
         MPMediaItem *song = self.songs[i];
 
