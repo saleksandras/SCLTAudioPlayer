@@ -66,11 +66,11 @@
 }
 
 -(void)previous {
-    [self reverseQueue];
+    [self reversePlaylist];
 }
 
 -(void)next {
-    [self advanceQueue];
+    [self advancePlaylist];
 }
 
 
@@ -95,23 +95,31 @@
 }
 
 
--(void)advanceQueue {
+-(void)advancePlaylist {
+    id<SCLTAudioPlayerDelegate> strongDelegate = self.delegate;
+    
+    double time = self.player.currentTime / self.player.duration;
+    [strongDelegate player:self willAdvancePlaylist:self.currentItem atPoint:time];
+    
     self.currentIndex = self.currentIndex + 1;
     SCLTMediaItem *nextItem = self.playlist[self.currentIndex];
     [self playItem:nextItem];
 
-    id<SCLTAudioPlayerDelegate> strongDelegate = self.delegate;
-    [strongDelegate player:self didAdvanceQueue:nextItem];
+    [strongDelegate player:self didAdvancePlaylist:nextItem];
 }
 
 
--(void)reverseQueue {
+-(void)reversePlaylist {
+    id<SCLTAudioPlayerDelegate> strongDelegate = self.delegate;
+    
+    double time = self.player.currentTime / self.player.duration;
+    [strongDelegate player:self willReversePlaylist:self.currentItem atPoint:time];
+    
     self.currentIndex = self.currentIndex - 1;
     SCLTMediaItem *nextItem = self.playlist[self.currentIndex];
     [self playItem:nextItem];
     
-    id<SCLTAudioPlayerDelegate> strongDelegate = self.delegate;
-    [strongDelegate player:self didReverseQueue:nextItem];
+    [strongDelegate player:self didReversePlaylist:nextItem];
 }
 
 
@@ -149,7 +157,7 @@
 #pragma mark - AVAudioPlayerDelegate
 
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-    [self advanceQueue];
+    [self advancePlaylist];
 }
 
 -(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {

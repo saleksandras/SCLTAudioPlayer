@@ -15,7 +15,12 @@
 
 -(void)playerDidPlay:(SCLTAudioPlayer*)player;
 -(void)playerDidPause:(SCLTAudioPlayer*)player;
--(void)player:(SCLTAudioPlayer*)player didAdvanceQueue:(SCLTMediaItem*)newItem;
--(void)player:(SCLTAudioPlayer*)player didReverseQueue:(SCLTMediaItem*)newItem;
+
+-(void)player:(SCLTAudioPlayer*)player willAdvancePlaylist:(SCLTMediaItem*)currentItem atPoint:(double)normalizedTime;
+
+-(void)player:(SCLTAudioPlayer*)player willReversePlaylist:(SCLTMediaItem*)currentItem atPoint:(double)normalizedTime;
+
+-(void)player:(SCLTAudioPlayer*)player didAdvancePlaylist:(SCLTMediaItem*)newItem;
+-(void)player:(SCLTAudioPlayer*)player didReversePlaylist:(SCLTMediaItem*)newItem;
 
 @end
