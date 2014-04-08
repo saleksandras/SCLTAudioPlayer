@@ -115,6 +115,7 @@
     }
     
     [[SCLTAudioPlayer sharedPlayer] setPlaylist:playlist];
+    [[SCLTAudioPlayer sharedPlayer] play];
 }
 
 
