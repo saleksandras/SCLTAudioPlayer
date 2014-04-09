@@ -30,6 +30,11 @@
     
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self updatePlayButtonLabel];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -49,15 +54,23 @@
 }
 
 
+-(void)updatePlayButtonLabel {
+    if ([[SCLTAudioPlayer sharedPlayer] isPlaying]) {
+        self.buttonPlay.titleLabel.text = @"Pause";
+    } else {
+        self.buttonPlay.titleLabel.text = @"Play";
+    }
+}
+
 #pragma mark - Audio Player delegate
 
 
 -(void)playerDidPlay:(SCLTAudioPlayer *)player {
-    self.buttonPlay.titleLabel.text = @"Pause";
+    [self updatePlayButtonLabel];
 }
 
 -(void)playerDidPause:(SCLTAudioPlayer *)player {
-    self.buttonPlay.titleLabel.text = @"Play";
+    [self updatePlayButtonLabel];
 }
 
 -(void)player:(SCLTAudioPlayer *)player willAdvancePlaylist:(SCLTMediaItem *)currentItem atPoint:(double)normalizedTime {

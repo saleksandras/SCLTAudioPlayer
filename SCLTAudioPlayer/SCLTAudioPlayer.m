@@ -209,7 +209,6 @@
 }
 
 -(void)updateSystemControls{
-
     if (!self.currentItem.mediaItem) {
         return;
     }
