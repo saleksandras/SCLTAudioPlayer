@@ -50,6 +50,7 @@
     [strongDelegate playerDidPlay:self];
     
     [self postNotification:SCLTAudioPlayerDidPlay];
+    [self updateSystemControls];
 }
 
 -(void)pause {
@@ -59,6 +60,7 @@
     [strongDelegate playerDidPause:self];
     
     [self postNotification:SCLTAudioPlayerDidPause];
+    [self updateSystemControls];
 }
 
 -(void)togglePlayPause {
@@ -82,12 +84,20 @@
 
 -(void)playItem:(SCLTMediaItem*)item {
     NSError *error;
+    if (self.player) {
+        self.player.delegate = nil;
+        self.player = nil;
+    }
+    
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:item.assetURL
                                                          error:&error];
     self.currentItem = item;
+    self.player.delegate = self;
     
     if (error) {
+        NSLog(@"SCLTAudioPlayer: error playing item!");
         [self postNotification:SCLTAudioPlayerError];
+        self.player.delegate = nil;
         self.player = nil;
         _isPlaying = NO;
         return;
@@ -105,6 +115,10 @@
     id<SCLTAudioPlayerDelegate> strongDelegate = self.delegate;
     
     double time = self.player.currentTime / self.player.duration;
+    // currentTime is 0 if the track reaches the end and stops playing
+    if (time == 0) {
+        time = 1.0;
+    }
     [strongDelegate player:self willAdvancePlaylist:self.currentItem atPoint:time];
     [self postNotification:SCLTAudioPlayerWillAdvancePlaylist];
     
@@ -255,3 +269,4 @@
 
 
 @end
+;
