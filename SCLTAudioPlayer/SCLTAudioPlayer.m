@@ -48,6 +48,8 @@
     
     id<SCLTAudioPlayerDelegate> strongDelegate = self.delegate;
     [strongDelegate playerDidPlay:self];
+    
+    [self postNotification:SCLTAudioPlayerDidPlay];
 }
 
 -(void)pause {
@@ -55,6 +57,8 @@
     [self.player pause];
     id<SCLTAudioPlayerDelegate> strongDelegate = self.delegate;
     [strongDelegate playerDidPause:self];
+    
+    [self postNotification:SCLTAudioPlayerDidPause];
 }
 
 -(void)togglePlayPause {
@@ -74,8 +78,6 @@
 }
 
 
-
-
 #pragma mark - Playlist Management
 
 -(void)playItem:(SCLTMediaItem*)item {
@@ -87,6 +89,7 @@
     if (error) {
         [self postNotification:SCLTAudioPlayerError];
         self.player = nil;
+        _isPlaying = NO;
         return;
     }
     
@@ -103,12 +106,14 @@
     
     double time = self.player.currentTime / self.player.duration;
     [strongDelegate player:self willAdvancePlaylist:self.currentItem atPoint:time];
+    [self postNotification:SCLTAudioPlayerWillAdvancePlaylist];
     
     self.currentIndex = self.currentIndex + 1;
     SCLTMediaItem *nextItem = self.playlist[self.currentIndex];
     [self playItem:nextItem];
 
     [strongDelegate player:self didAdvancePlaylist:nextItem];
+    [self postNotification:SCLTAudioPlayerDidAdvancePlaylist];
 }
 
 
@@ -117,12 +122,14 @@
     
     double time = self.player.currentTime / self.player.duration;
     [strongDelegate player:self willReversePlaylist:self.currentItem atPoint:time];
+    [self postNotification:SCLTAudioPlayerWillReversePlaylist];
     
     self.currentIndex = self.currentIndex - 1;
     SCLTMediaItem *nextItem = self.playlist[self.currentIndex];
     [self playItem:nextItem];
     
     [strongDelegate player:self didReversePlaylist:nextItem];
+    [self postNotification:SCLTAudioPlayerDidReversePlaylist];
 }
 
 
@@ -140,20 +147,27 @@
 
 
 -(void)setCurrentIndex:(NSInteger)currentIndex {
+    
     if (!self.playlist) {
         _currentIndex = 0;
         [self postNotification:SCLTAudioPlayerError];
         return;
     }
     
-    if (currentIndex > [self.playlist count]) {
+    // count is unsigned so -1 ( returns true for currentIndex > count
+    // need to make sure it's also > 0
+    if (currentIndex >= 0 && currentIndex >= [self.playlist count]) {
+        // reached the end so loop to beginning
         _currentIndex = 0;
     } else if (currentIndex < 0) {
-        _currentIndex = [self.playlist count];
+        // at the beginning, loop to end
+        _currentIndex = [self.playlist count]-1;
     } else {
+        // go to the specified index
         _currentIndex = currentIndex;
     }
     
+    [self postNotification:SCLTAudioPlayerDidSetPlaylist];
 }
 
 
@@ -164,10 +178,12 @@
 }
 
 -(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
+    [self postNotification:SCLTAudioPlayerInterruptionBegan];
     [player pause];
 }
 
 -(void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
+    [self postNotification:SCLTAudioPlayerInterruptionEnded];
     if (flags == AVAudioSessionInterruptionOptionShouldResume) {
         [player play];
     }
@@ -186,7 +202,7 @@
                 [self play];
                 break;
             case UIEventSubtypeRemoteControlTogglePlayPause:
-                [self play];
+                [self togglePlayPause];
                 break;
             case UIEventSubtypeRemoteControlPreviousTrack:
                 [self previous];

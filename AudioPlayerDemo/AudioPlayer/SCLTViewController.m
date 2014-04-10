@@ -33,6 +33,7 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self updatePlayButtonLabel];
+    [self updateTrackInfo];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,9 +57,21 @@
 
 -(void)updatePlayButtonLabel {
     if ([[SCLTAudioPlayer sharedPlayer] isPlaying]) {
-        self.buttonPlay.titleLabel.text = @"Pause";
+        [self.buttonPlay setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.buttonPlay setTitle:@"Pause" forState:UIControlStateHighlighted];
     } else {
-        self.buttonPlay.titleLabel.text = @"Play";
+        [self.buttonPlay setTitle:@"Play" forState:UIControlStateNormal];
+        [self.buttonPlay setTitle:@"Play" forState:UIControlStateHighlighted];
+    }
+}
+
+-(void)updateTrackInfo {
+    SCLTMediaItem *currentItem = [SCLTAudioPlayer sharedPlayer].currentItem;
+    if (currentItem) {
+        if (currentItem.mediaItem) {
+            self.labelArtist.text = [currentItem.mediaItem valueForKey:MPMediaItemPropertyArtist];
+            self.labelSongTitle.text = [currentItem.mediaItem valueForKey:MPMediaItemPropertyTitle];
+        }
     }
 }
 
@@ -67,6 +80,7 @@
 
 -(void)playerDidPlay:(SCLTAudioPlayer *)player {
     [self updatePlayButtonLabel];
+    [self updateTrackInfo];
 }
 
 -(void)playerDidPause:(SCLTAudioPlayer *)player {
@@ -79,10 +93,12 @@
 
 -(void)player:(SCLTAudioPlayer *)player didAdvancePlaylist:(SCLTMediaItem *)newItem {
     NSLog(@"Next item playing!");
+    [self updateTrackInfo];
 }
 
 -(void)player:(SCLTAudioPlayer *)player didReversePlaylist:(SCLTMediaItem *)newItem {
     NSLog(@"Previous item playing!");
+    [self updateTrackInfo];
 }
 
 -(void)player:(SCLTAudioPlayer *)player willReversePlaylist:(SCLTMediaItem *)currentItem atPoint:(double)normalizedTime {

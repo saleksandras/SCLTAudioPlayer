@@ -11,5 +11,15 @@
 @implementation SCLTAudioPlayerNotifications
 
 NSString* const SCLTAudioPlayerError = @"SCLTAudioPlayerError";
+NSString* const SCLTAudioPlayerInterruptionBegan = @"SCLTAudioPlayerInterruptionBegan";
+NSString* const SCLTAudioPlayerInterruptionEnded = @"SCLTAudioPlayerInterruptionEnded";
+
+NSString* const SCLTAudioPlayerDidPlay = @"SCLTAudioPlayerDidPlay";
+NSString* const SCLTAudioPlayerDidPause = @"SCLTAudioPlayerDidPause";
+NSString* const SCLTAudioPlayerDidSetPlaylist = @"SCLTAudioPlayerDidSetPlaylist";
+NSString* const SCLTAudioPlayerWillAdvancePlaylist = @"SCLTAudioPlayerWillAdvancePlaylist";
+NSString* const SCLTAudioPlayerDidAdvancePlaylist = @"SCLTAudioPlayerDidAdvancePlaylist";
+NSString* const SCLTAudioPlayerWillReversePlaylist = @"SCLTAudioPlayerWillReversePlaylist";
+NSString* const SCLTAudioPlayerDidReversePlaylist = @"SCLTAudioPlayerDidReversePlaylist";
 
 @end

@@ -12,6 +12,10 @@
 
 @interface SCLTViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SCLTAudioPlayerDelegate>
 
+
+@property (strong, nonatomic) IBOutlet UILabel *labelSongTitle;
+@property (strong, nonatomic) IBOutlet UILabel *labelArtist;
+
 @property (strong, nonatomic) IBOutlet UITableView *songTableView;
 
 @property (strong, nonatomic) IBOutlet UIButton *buttonPlay;
