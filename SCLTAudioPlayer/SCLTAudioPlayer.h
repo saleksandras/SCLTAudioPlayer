@@ -22,6 +22,9 @@
 /// The currently loaded item
 @property (nonatomic, strong) SCLTMediaItem *currentItem;
 
+/// The current index of the playlist
+@property (nonatomic, assign) NSInteger currentIndex;
+
 /// Is an item currently playing?
 @property (nonatomic, assign, readonly) BOOL isPlaying;
 

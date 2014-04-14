@@ -12,7 +12,6 @@
 @interface SCLTAudioPlayer()
 
 @property (nonatomic, strong) AVAudioPlayer *player;
-@property (nonatomic, assign) NSInteger currentIndex;
 
 @end
 
