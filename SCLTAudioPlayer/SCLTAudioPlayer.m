@@ -183,6 +183,21 @@
     [self postNotification:SCLTAudioPlayerDidSetPlaylist];
 }
 
+-(void)changeVolumeToValue:(CGFloat)volume
+{
+    self.player.volume = volume;
+}
+
+-(void)startPlayingLocalFileWithName:(NSString *)name
+{
+	NSString *filePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], name];
+    NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+    
+    SCLTMediaItem *selectedTrack = [[SCLTMediaItem alloc] initWithURL:fileURL];
+    [self setPlaylist:@[selectedTrack]];
+    [self play];
+}
+
 
 #pragma mark - AVAudioPlayerDelegate
 

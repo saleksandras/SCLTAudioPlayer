@@ -48,6 +48,12 @@
 /// Play the next item in the playlist
 -(void)next;
 
+-(void)setPlaylist:(NSArray *)playlist;
+
+-(void)changeVolumeToValue:(CGFloat)volume;
+
+-(void)startPlayingLocalFileWithName:(NSString *)name;
+
 
 -(void)handleRemoteControlEvent:(UIEvent*)receivedEvent;
 
