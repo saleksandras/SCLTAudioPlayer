@@ -83,7 +83,7 @@
     if (repeatMode) {
         self.player.numberOfLoops = -1;
     } else {
-        self.player.numberOfLoops = 1;
+        self.player.numberOfLoops = 0;
     }
 }
 
@@ -132,7 +132,7 @@
     [self postNotification:SCLTAudioPlayerWillAdvancePlaylist];
     
     if (self.shuffleMode) {
-        self.currentIndex = (arc4random() % self.playlist.count) + 1;
+        self.currentIndex = (arc4random() % self.playlist.count);
     } else {
         self.currentIndex = self.currentIndex + 1;
     }
