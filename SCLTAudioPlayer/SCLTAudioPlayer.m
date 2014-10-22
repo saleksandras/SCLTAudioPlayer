@@ -78,6 +78,15 @@
     [self advancePlaylist];
 }
 
+- (void)setRepeatMode:(BOOL)repeatMode
+{
+    if (repeatMode) {
+        self.player.numberOfLoops = -1;
+    } else {
+        self.player.numberOfLoops = 1;
+    }
+}
+
 
 #pragma mark - Playlist Management
 
@@ -90,6 +99,7 @@
     
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:item.assetURL
                                                          error:&error];
+    
     self.currentItem = item;
     self.player.delegate = self;
     
@@ -121,7 +131,13 @@
     [strongDelegate player:self willAdvancePlaylist:self.currentItem atPoint:time];
     [self postNotification:SCLTAudioPlayerWillAdvancePlaylist];
     
-    self.currentIndex = self.currentIndex + 1;
+    if (self.shuffleMode) {
+        self.currentIndex = (arc4random() % self.playlist.count) + 1;
+    } else {
+        self.currentIndex = self.currentIndex + 1;
+    }
+    
+    
     SCLTMediaItem *nextItem = self.playlist[self.currentIndex];
     [self playItem:nextItem];
 
@@ -280,7 +296,4 @@
                                                         object:self];
 }
 
-
-
 @end
-;

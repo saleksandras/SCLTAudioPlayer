@@ -28,6 +28,7 @@
 /// Is an item currently playing?
 @property (nonatomic, assign, readonly) BOOL isPlaying;
 
+@property (nonatomic, assign) BOOL shuffleMode;
 
 
 +(SCLTAudioPlayer*)sharedPlayer;
@@ -36,7 +37,6 @@
 /// Play the currently loaded item
 -(void)play;
 
-/// Play the specified media item
 -(void)playItem:(SCLTMediaItem*)item;
 
 /// Pause playback
@@ -59,5 +59,7 @@
 
 
 -(void)handleRemoteControlEvent:(UIEvent*)receivedEvent;
+
+- (void)setRepeatMode:(BOOL)repeatMode;
 
 @end
