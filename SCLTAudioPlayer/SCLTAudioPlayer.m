@@ -75,7 +75,7 @@
 }
 
 -(void)next {
-    [self advancePlaylist];
+    [self advancePlaylist:YES];
 }
 
 - (void)setRepeatMode:(BOOL)repeatMode
@@ -120,8 +120,12 @@
 }
 
 
--(void)advancePlaylist {
-    NSLog(@"advancePlaylist");
+-(void)advancePlaylist
+{
+	[self advancePlaylist:NO];
+}
+
+-(void)advancePlaylist:(BOOL)isNext {
     id<SCLTAudioPlayerDelegate> strongDelegate = self.delegate;
     
     double time = self.player.currentTime / self.player.duration;
@@ -132,8 +136,7 @@
     [strongDelegate player:self willAdvancePlaylist:self.currentItem atPoint:time];
     [self postNotification:SCLTAudioPlayerWillAdvancePlaylist];
     
-    if (self.shuffleMode) {
-		NSLog(@"shuffle");
+    if (!isNext && self.shuffleMode) {
         NSInteger prevIndex = self.currentIndex;
 		NSInteger i = 0;
 		do {
@@ -144,7 +147,6 @@
 			}
 		} while (prevIndex==self.currentIndex);
     } else {
-		NSLog(@"next song");
         self.currentIndex = self.currentIndex + 1;
     }
     
@@ -229,18 +231,15 @@
 #pragma mark - AVAudioPlayerDelegate
 
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-    NSLog(@"audioPlayerDidFinishPlaying");
     [self advancePlaylist];
 }
 
 -(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
-    NSLog(@"audioPlayerBeginInterruption");
     [self postNotification:SCLTAudioPlayerInterruptionBegan];
     [player pause];
 }
 
 -(void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
-    NSLog(@"audioPlayerEndInterruption");
     [self postNotification:SCLTAudioPlayerInterruptionEnded];
     if (flags == AVAudioSessionInterruptionOptionShouldResume) {
         [player play];
@@ -266,7 +265,6 @@
                 [self previous];
                 break;
             case UIEventSubtypeRemoteControlNextTrack:
-                NSLog(@"UIEventSubtypeRemoteControlNextTrack");
                 [self next];
                 break;
             case UIEventSubtypeRemoteControlBeginSeekingBackward:
