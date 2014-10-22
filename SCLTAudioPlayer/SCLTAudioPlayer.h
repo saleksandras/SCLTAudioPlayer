@@ -36,6 +36,9 @@
 /// Play the currently loaded item
 -(void)play;
 
+/// Play the specified media item
+-(void)playItem:(SCLTMediaItem*)item;
+
 /// Pause playback
 -(void)pause;
 
