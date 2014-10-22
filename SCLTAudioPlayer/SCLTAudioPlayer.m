@@ -132,8 +132,18 @@
     [self postNotification:SCLTAudioPlayerWillAdvancePlaylist];
     
     if (self.shuffleMode) {
-        self.currentIndex = (arc4random() % self.playlist.count);
+		NSLog(@"shuffle");
+        NSInteger prevIndex = self.currentIndex;
+		NSInteger i = 0;
+		do {
+			self.currentIndex = (arc4random() % self.playlist.count);
+			i++;
+			if (i>5) {
+				break;
+			}
+		} while (prevIndex==self.currentIndex);
     } else {
+		NSLog(@"next song");
         self.currentIndex = self.currentIndex + 1;
     }
     
