@@ -121,6 +121,7 @@
 
 
 -(void)advancePlaylist {
+    NSLog(@"advancePlaylist");
     id<SCLTAudioPlayerDelegate> strongDelegate = self.delegate;
     
     double time = self.player.currentTime / self.player.duration;
@@ -228,15 +229,18 @@
 #pragma mark - AVAudioPlayerDelegate
 
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    NSLog(@"audioPlayerDidFinishPlaying");
     [self advancePlaylist];
 }
 
 -(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
+    NSLog(@"audioPlayerBeginInterruption");
     [self postNotification:SCLTAudioPlayerInterruptionBegan];
     [player pause];
 }
 
 -(void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
+    NSLog(@"audioPlayerEndInterruption");
     [self postNotification:SCLTAudioPlayerInterruptionEnded];
     if (flags == AVAudioSessionInterruptionOptionShouldResume) {
         [player play];
@@ -262,6 +266,7 @@
                 [self previous];
                 break;
             case UIEventSubtypeRemoteControlNextTrack:
+                NSLog(@"UIEventSubtypeRemoteControlNextTrack");
                 [self next];
                 break;
             case UIEventSubtypeRemoteControlBeginSeekingBackward:
